@@ -68,7 +68,7 @@
             $this.hover(function (event) {
                 // this helps prevent a double event from firing.
                 // see https://github.com/CWSpear/bootstrap-hover-dropdown/issues/55
-                if(!$parent.hasClass('open') && !$parent.is(event.target)) {
+                if($parent.hasClass('open') && !$parent.is(event.target)) {
                     // stop this event, stop executing any code
                     // in this callback but continue to propagate
                     return true;
@@ -105,14 +105,14 @@
                 window.clearTimeout(timeout);
                 // restart hover timer
                 window.clearTimeout(timeoutHover);
-                
-                // delay for hover event.  
+
+                // delay for hover event.
                 timeoutHover = window.setTimeout(function () {
                     $allDropdowns.find(':focus').blur();
 
                     if(settings.instantlyCloseOthers === true)
                         $allDropdowns.removeClass('open');
-                    
+
                     // clear timer for hover event
                     window.clearTimeout(timeoutHover);
                     $this.attr('aria-expanded', 'true');
